@@ -13,7 +13,9 @@ const app = express();
 //router
 const router = express.Router();
 //require routes file to router object
-//require("./config/routes")(router);
+
+require("./config/routes")(router);
+
 //static directory folder
 app.use(express.static(__dirname + "/public"));
 
