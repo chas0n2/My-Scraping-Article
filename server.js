@@ -3,8 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const expressHandlebars = require("express-handlebars");
-//const axios = require("axios");
-
+const axios = require("axios").default;
 //setup for port HOST
 const PORT = process.env.PORT || 3030;
 
