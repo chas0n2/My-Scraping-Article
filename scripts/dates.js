@@ -1,12 +1,14 @@
-const createDate = function() {
-    const d = new Date();
-    const FD = "";
+var makeDate = function() {
+    var d = new Date();
+    var formattedDate = "";
 
-    FD += (d.getMonth() + 1) + "_";
-    FD += d.getDate() + "_";
-    FD +=d.getFullYear();
+    formattedDate += (d.getMonth() + 1) + "_";
 
-    return FD;
+    formattedDate += d.getDate() + "_";
 
+    formattedDate +=d.getFullYear();
+
+    return formattedDate;
 };
-module.exports = createDate;
+
+module.exports = makeDate

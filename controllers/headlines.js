@@ -1,20 +1,22 @@
-const scraper = require("../scripts/articlescrape");
-const createDate = require("../scripts/dates");
+// require scripts
+var scrape = require("../scripts/scrape");
+var makeDate = require("../scripts/dates");
 
-const Headline = require("../models/headline");
+// bring in headline and note mongoose models
+var Headline = require("../models/Headline");
 
 module.exports = {
     fetch: function(cb) {
-        scraper(function(data) {
-            const articles = data;
-            for (let i = 0; i < articles.length; i++) {
-                articles[i].date = createDate();
+        scrape(function(data) {
+            var articles = data;
+            
+            for (var i=0; i < articles.length; i++) {
+                articles[i].date = makeDate();
                 articles[i].saved = false;
-                
             }
 
-            Headline.collection.insertMany(articles, {ordered: false}, function(err, docs){
-                cb(err, docs);
+            Headline.collection.insertMany(articles, {ordered:false}, function(err, docs){
+                cb(err,docs);
             });
         });
     },
@@ -22,16 +24,17 @@ module.exports = {
         Headline.remove(query, cb);
     },
     get: function(query, cb) {
-    Headline.find(query)
-    .sort({
-        _id: -1
-    })
-    .exec(function(err, doc) {
-        cb(doc);
-    });
-},
- update: function(query, cb) {
-    Headline.update({_id: query._id}, {
-        $set: query
-    }, {}, cb); }
-};
+        Headline.find(query)
+        .sort({
+            _id: -1
+        })
+        .exec(function(err, doc) {
+            cb(doc);
+        });
+    },
+    update: function(query, cb) {
+        Headline.update({_id: query._id}, {
+            $set: query
+        }, {}, cb);
+    }
+}

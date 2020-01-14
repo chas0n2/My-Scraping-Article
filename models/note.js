@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-const noteSchema = new Schema({
+var noteSchema = new Schema({
     _headlineId: {
         type: Schema.Types.ObjectId,
         ref: "Headline"
@@ -10,6 +10,6 @@ const noteSchema = new Schema({
     noteText: String
 });
 
-const Note = mongoose.model("Note", noteSchema);
+var Note = mongoose.model("Note", noteSchema);
 
 module.exports = Note;
